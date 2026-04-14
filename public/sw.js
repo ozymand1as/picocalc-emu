@@ -1,18 +1,19 @@
 // PicoCalc Web Emulator — Service Worker
 // Cache version: increment on breaking changes
 const CACHE = 'picocalc-v1';
+const BASE = '/picocalc-emu/';
 
 // Files to pre-cache at install time (must be served from origin)
 const PRECACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.svg',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/bramble.js',
-  '/bramble.wasm',
-  '/firmware.uf2',
+  BASE,
+  BASE + 'index.html',
+  BASE + 'manifest.json',
+  BASE + 'favicon.svg',
+  BASE + 'icon-192.png',
+  BASE + 'icon-512.png',
+  BASE + 'bramble.js',
+  BASE + 'bramble.wasm',
+  BASE + 'firmware.uf2',
 ];
 
 // --- Install: pre-cache shell -------------------------------------------------
@@ -56,7 +57,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE).then((c) => c.put(request, clone));
           return resp;
         })
-        .catch(() => caches.match('/index.html'))
+        .catch(() => caches.match(BASE + 'index.html'))
     );
     return;
   }

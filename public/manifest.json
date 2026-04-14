@@ -2,7 +2,7 @@
   "name": "PicoCalc Web Emulator",
   "short_name": "PicoCalc",
   "description": "Web-based RP2040/RP2350 emulator for PicoCalc",
-  "start_url": "/",
+  "start_url": "/picocalc-emu/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f172a",

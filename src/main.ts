@@ -214,7 +214,7 @@ async function initEmulator() {
     updateStatus('Loading firmware…');
     // Auto-load firmware.uf2 from the server (placed in /public/firmware.uf2)
     try {
-        const resp = await fetch('/firmware.uf2');
+        const resp = await fetch(import.meta.env.BASE_URL + 'firmware.uf2');
         if (resp.ok) {
             const buf = await resp.arrayBuffer();
             await loadUF2(new File([buf], 'firmware.uf2'));
@@ -411,7 +411,7 @@ ctx.fillText('Initializing emulator…', 70, 160);
 
 // ── Bootstrap: load bramble.js then init ─────────────────────────────────────
 const script = document.createElement('script');
-script.src = '/bramble.js';
+script.src = import.meta.env.BASE_URL + 'bramble.js';
 script.onload = () => {
     if (typeof (window as any).createBramble === 'function') {
         initEmulator();
@@ -419,14 +419,14 @@ script.onload = () => {
         console.error('bramble.js loaded but createBramble not found');
     }
 };
-script.onerror = () => console.error('Failed to load /bramble.js — run build_wasm.sh first');
+script.onerror = () => console.error('Failed to load bramble.js — run build_wasm.sh first');
 document.body.appendChild(script);
 
 // ── PWA: register service worker ─────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
-            .register('/sw.js')
+            .register(import.meta.env.BASE_URL + 'sw.js')
             .then((reg) => console.log('[PWA] Service worker registered, scope:', reg.scope))
             .catch((err) => console.warn('[PWA] Service worker registration failed:', err));
     });
