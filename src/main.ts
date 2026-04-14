@@ -1,4 +1,5 @@
 import './style.css'
+import { buildKeyboard } from './keyboard.js'
 
 declare global {
   interface Window { createBramble: () => Promise<any>; }
@@ -199,6 +200,16 @@ async function initEmulator() {
     // Enable the firmware button now that the module is ready
     const btn = document.getElementById('uf2-upload') as HTMLInputElement;
     if (btn) btn.disabled = false;
+
+    // Build on-screen keyboard overlays
+    const deviceContainer = document.getElementById('device-container');
+    if (deviceContainer) {
+        buildKeyboard(deviceContainer, (code: number) => {
+            if (brambleModule && emulatorRunning) {
+                brambleModule._picocalc_web_set_key(code);
+            }
+        });
+    }
 
     updateStatus('Loading firmware…');
     // Auto-load firmware.uf2 from the server (placed in /public/firmware.uf2)

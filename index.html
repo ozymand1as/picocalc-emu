@@ -7,48 +7,55 @@
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#0a0a10" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="PicoCalc" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
 
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="device-frame">
-      <h1>PicoCalc Emulator</h1>
-      <div class="screen-container">
-          <canvas id="lcd" width="320" height="320"></canvas>
+    <main id="app">
+
+      <!-- ── Device shell ─────────────────────────────────────────────────── -->
+      <div id="device-container">
+        <img id="device-img" src="/picocalc-device.png" alt="PicoCalc" draggable="false" />
+        <canvas id="lcd" width="320" height="320"></canvas>
+        <!-- Key button overlays are injected by keyboard.ts -->
       </div>
-      
-      <div class="controls">
-          <label class="file-upload">
-              Load UF2 Firmware
-              <input type="file" id="uf2-upload" accept=".uf2" disabled />
-          </label>
-          <label class="file-upload">
-              Load SD Image (.img)
-              <input type="file" id="sd-upload" accept=".img" />
-          </label>
-          <button id="btn-sd-export" class="file-upload export-btn" disabled>Export SD Image</button>
-          <div id="status-text" class="status-text">Initializing...</div>
+
+      <!-- ── Controls bar ────────────────────────────────────────────────── -->
+      <div id="controls-bar">
+        <label class="btn btn-accent" title="Load SD card image (.img)">
+          SD Import
+          <input type="file" id="sd-upload" accept=".img" />
+        </label>
+        <button id="btn-sd-export" class="btn btn-teal" disabled>SD Export</button>
+        <label class="btn btn-dim" title="Load custom firmware (.uf2)">
+          Load UF2
+          <input type="file" id="uf2-upload" accept=".uf2" disabled />
+        </label>
+      </div>
+
+      <div id="status-text" class="status-text">Initializing…</div>
+
+      <!-- ── Debug (collapsed by default) ───────────────────────────────── -->
+      <details id="debug-section">
+        <summary>Debug</summary>
+        <div class="debug-inner">
           <div id="diagnostics" class="diagnostics"></div>
-      </div>
-      
-      <div id="keyboard" class="keyboard">
-          <p class="hint">Click here and use your physical keyboard to type.</p>
-      </div>
-
-      <div class="debug-panel">
-          <input type="text" id="mem-addr" placeholder="0x10000000" />
-          <button id="btn-dump">Dump Hex</button>
-          <button id="btn-verbose">Log: Normal</button>
+          <div class="debug-controls">
+            <input type="text" id="mem-addr" placeholder="0x10000000" />
+            <button id="btn-dump">Dump Hex</button>
+            <button id="btn-verbose">Log: Normal</button>
+          </div>
           <pre id="mem-dump" class="mem-dump"></pre>
-      </div>
+        </div>
+      </details>
 
-    </div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
