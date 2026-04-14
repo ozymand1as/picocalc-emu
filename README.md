@@ -1,6 +1,6 @@
 # PicoCalc Web Emulator
 
-A browser-based emulator for the [PicoCalc](https://www.clockworkpi.com/picocalc) handheld computer, powered by (fork of) the [**Bramble**](https://github.com/Night-Traders-Dev/Bramble) RP2040/RP2350 emulator compiled to WebAssembly via Emscripten.
+A browser-based emulator for the [PicoCalc](https://www.clockworkpi.com/picocalc) handheld computer, powered by (my fork of) the [**Bramble**](https://github.com/Night-Traders-Dev/Bramble) RP2040/RP2350 emulator compiled to WebAssembly via Emscripten.
 
 ## Features
 
