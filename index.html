@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PicoCalc Web Emulator</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="device-frame">
+      <h1>PicoCalc Emulator</h1>
+      <div class="screen-container">
+          <canvas id="lcd" width="320" height="320"></canvas>
+      </div>
+      
+      <div class="controls">
+          <label class="file-upload">
+              Load UF2 Firmware
+              <input type="file" id="uf2-upload" accept=".uf2" disabled />
+          </label>
+          <label class="file-upload">
+              Load SD Image (.img)
+              <input type="file" id="sd-upload" accept=".img" />
+          </label>
+          <div id="status-text" class="status-text">Initializing...</div>
+          <div id="diagnostics" class="diagnostics"></div>
+      </div>
+      
+      <div id="keyboard" class="keyboard">
+          <p class="hint">Click here and use your physical keyboard to type.</p>
+      </div>
+
+      <div class="debug-panel">
+          <input type="text" id="mem-addr" placeholder="0x10000000" />
+          <button id="btn-dump">Dump Hex</button>
+          <button id="btn-verbose">Log: Normal</button>
+          <pre id="mem-dump" class="mem-dump"></pre>
+      </div>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
