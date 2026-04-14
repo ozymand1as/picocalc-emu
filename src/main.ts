@@ -291,9 +291,35 @@ document.getElementById('sd-upload')?.addEventListener('change', async (e) => {
         const success = brambleModule._picocalc_web_load_sd_image(ptr, u8.length);
         console.log(`SD Load result: ${success} bytes`);
         brambleModule._free(ptr);
+
+        // Enable export now that an image is in memory
+        const exportBtn = document.getElementById('btn-sd-export') as HTMLButtonElement;
+        if (exportBtn) exportBtn.disabled = false;
     }
     
     (e.target as HTMLInputElement).blur();
+});
+
+document.getElementById('btn-sd-export')?.addEventListener('click', () => {
+    if (!brambleModule) return;
+    const ptr: number = brambleModule._picocalc_web_get_sd_image_ptr();
+    const size: number = brambleModule._picocalc_web_get_sd_image_size();
+    if (!ptr || !size) {
+        updateStatus('No SD image available to export.');
+        return;
+    }
+    // Snapshot the buffer — avoids issues if WASM memory grows during download
+    const data = new Uint8Array(brambleModule.HEAPU8.buffer.slice(ptr, ptr + size));
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'picocalc-sd.img';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    updateStatus('SD image exported.');
 });
 
 // ── Keyboard input → I2C emulation ───────────────────────────────────────────
@@ -384,3 +410,13 @@ script.onload = () => {
 };
 script.onerror = () => console.error('Failed to load /bramble.js — run build_wasm.sh first');
 document.body.appendChild(script);
+
+// ── PWA: register service worker ─────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((reg) => console.log('[PWA] Service worker registered, scope:', reg.scope))
+            .catch((err) => console.warn('[PWA] Service worker registration failed:', err));
+    });
+}

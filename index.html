@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PicoCalc Web Emulator</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PicoCalc" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
@@ -22,6 +32,7 @@
               Load SD Image (.img)
               <input type="file" id="sd-upload" accept=".img" />
           </label>
+          <button id="btn-sd-export" class="file-upload export-btn" disabled>Export SD Image</button>
           <div id="status-text" class="status-text">Initializing...</div>
           <div id="diagnostics" class="diagnostics"></div>
       </div>

@@ -4401,6 +4401,8 @@ var _picocalc_web_set_key,
   _picocalc_web_init,
   _picocalc_web_load_uf2,
   _picocalc_web_load_sd_image,
+  _picocalc_web_get_sd_image_ptr,
+  _picocalc_web_get_sd_image_size,
   _picocalc_web_get_display_buffer,
   _picocalc_web_get_spi_count,
   _picocalc_web_get_pixel_count,
@@ -4466,6 +4468,8 @@ function assignWasmExports(wasmExports) {
   _picocalc_web_init = Module['_picocalc_web_init'] = wasmExports['picocalc_web_init'];
   _picocalc_web_load_uf2 = Module['_picocalc_web_load_uf2'] = wasmExports['picocalc_web_load_uf2'];
   _picocalc_web_load_sd_image = Module['_picocalc_web_load_sd_image'] = wasmExports['picocalc_web_load_sd_image'];
+  _picocalc_web_get_sd_image_ptr = Module['_picocalc_web_get_sd_image_ptr'] = wasmExports['picocalc_web_get_sd_image_ptr'];
+  _picocalc_web_get_sd_image_size = Module['_picocalc_web_get_sd_image_size'] = wasmExports['picocalc_web_get_sd_image_size'];
   _picocalc_web_get_display_buffer = Module['_picocalc_web_get_display_buffer'] = wasmExports['picocalc_web_get_display_buffer'];
   _picocalc_web_get_spi_count = Module['_picocalc_web_get_spi_count'] = wasmExports['picocalc_web_get_spi_count'];
   _picocalc_web_get_pixel_count = Module['_picocalc_web_get_pixel_count'] = wasmExports['picocalc_web_get_pixel_count'];
