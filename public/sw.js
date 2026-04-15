@@ -1,16 +1,22 @@
 // PicoCalc Web Emulator — Service Worker
 // Cache version: increment on breaking changes
-const CACHE = 'picocalc-v1';
+const CACHE = 'picocalc-v2';
 const BASE = '/picocalc-emu/';
+
+// Hashed JS/CSS assets injected at build time by scripts/inject-sw-manifest.mjs
+// At dev time this is empty — runtime caching covers them after first load.
+const VITE_ASSETS = [];
 
 // Files to pre-cache at install time (must be served from origin)
 const PRECACHE = [
+  ...VITE_ASSETS,
   BASE,
   BASE + 'index.html',
   BASE + 'manifest.json',
   BASE + 'favicon.svg',
   BASE + 'icon-192.png',
   BASE + 'icon-512.png',
+  BASE + 'picocalc-device.png',
   BASE + 'bramble.js',
   BASE + 'bramble.wasm',
   BASE + 'firmware.uf2',

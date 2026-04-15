@@ -7,4 +7,8 @@ const BASE = '/picocalc-emu/'
 
 export default defineConfig({
   base: BASE,
+  build: {
+    // Emit .vite/manifest.json so inject-sw-manifest.mjs can read hashed filenames
+    manifest: true,
+  },
 })
