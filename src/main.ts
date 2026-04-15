@@ -9,6 +9,8 @@ declare global {
 let brambleModule: any    = null;
 let displayBufferPtr: number = 0;
 let emulatorRunning = false;
+let displayView: Uint8ClampedArray | null = null;
+let lastWasmBuffer: ArrayBuffer | null = null;
 
 const canvas   = document.getElementById('lcd') as HTMLCanvasElement;
 const ctx      = canvas.getContext('2d')!;
@@ -195,7 +197,7 @@ async function initEmulator() {
                 lastPCLog = now;
             }
         }
-    }, 100);
+    }, 500);
 
     // Enable the firmware button now that the module is ready
     const btn = document.getElementById('uf2-upload') as HTMLInputElement;
@@ -231,11 +233,12 @@ async function initEmulator() {
 // ── Render loop ───────────────────────────────────────────────────────────────
 function renderLoop() {
     if (brambleModule && displayBufferPtr) {
-        // Re-create view each frame: handles WASM memory growth transparently
-        const view = new Uint8ClampedArray(
-            brambleModule.HEAPU8.buffer, displayBufferPtr, 320 * 320 * 4
-        );
-        imageData.data.set(view);
+        // Reuse the view unless WASM memory grew (buffer reference changes)
+        if (brambleModule.HEAPU8.buffer !== lastWasmBuffer) {
+            lastWasmBuffer = brambleModule.HEAPU8.buffer as ArrayBuffer;
+            displayView = new Uint8ClampedArray(lastWasmBuffer, displayBufferPtr, 320 * 320 * 4);
+        }
+        imageData.data.set(displayView!);
         ctx.putImageData(imageData, 0, 0);
     }
     requestAnimationFrame(renderLoop);
