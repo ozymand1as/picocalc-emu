@@ -1,6 +1,6 @@
 // PicoCalc Web Emulator — Service Worker
 // Cache version: increment on breaking changes
-const CACHE = 'picocalc-v2';
+const CACHE = 'picocalc-v3';
 const BASE = '/picocalc-emu/';
 
 // Hashed JS/CSS assets injected at build time by scripts/inject-sw-manifest.mjs
