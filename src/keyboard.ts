@@ -20,25 +20,25 @@ export interface KeyDef {
 export const KEY_DEFS: KeyDef[] = [
 
   // ── D-pad ──────────────────────────────────────────────────────────────────
-  { label: '↑', primary: 128, left: 14.7, top: 54, width: 8.1, height: 4.8 },
-  { label: '↓', primary: 129, left: 14.7, top: 61, width: 8.1, height: 4.8 },
-  { label: '←', primary: 130, left:  9, top: 57.5, width: 8.1, height: 4.8 },
-  { label: '→', primary: 131, left: 20.5, top: 57.5, width: 8.1, height: 4.8 },
+  { label: '↑', primary: 0xB5, left: 14.7, top: 54, width: 8.1, height: 4.8 },   // KEY_UP
+  { label: '↓', primary: 0xB6, left: 14.7, top: 61, width: 8.1, height: 4.8 },   // KEY_DOWN
+  { label: '←', primary: 0xB4, left:  9, top: 57.5, width: 8.1, height: 4.8 },   // KEY_LEFT
+  { label: '→', primary: 0xB7, left: 20.5, top: 57.5, width: 8.1, height: 4.8 }, // KEY_RIGHT
 
   // ── Function key row (right of D-pad, y ≈ 54-59%) ─────────────────────────
-  { label: 'F1', primary: 132, left: 34, top: 55, width: 11, height: 3.2 },
-  { label: 'F2', primary: 133, left: 45.2, top: 55, width: 11, height: 3.2 },
-  { label: 'F3', primary: 134, left: 57.2, top: 55, width: 11, height: 3.2 },
-  { label: 'F4', primary: 135, left: 69, top: 55, width: 11, height: 3.2 },
-  { label: 'F5', primary: 136, left: 81.5, top: 55, width: 11, height: 3.2 },
+  { label: 'F1', primary: 0x81, left: 34, top: 55, width: 11, height: 3.2 },
+  { label: 'F2', primary: 0x82, left: 45.2, top: 55, width: 11, height: 3.2 },
+  { label: 'F3', primary: 0x83, left: 57.2, top: 55, width: 11, height: 3.2 },
+  { label: 'F4', primary: 0x84, left: 69, top: 55, width: 11, height: 3.2 },
+  { label: 'F5', primary: 0x85, left: 81.5, top: 55, width: 11, height: 3.2 },
 
   // ── Esc / Tab / CapsLK / Del / Back row (y ≈ 59-64%) ─────────────────────
-  { label: 'Esc',  primary: 27,  left: 34, top: 59.2, width: 11, height: 3.2 },
-  { label: 'Tab',  primary: 9,   left: 45.2, top: 59.2, width: 11, height: 3.2 },
+  { label: 'Esc',  primary: 0xB1, left: 34, top: 59.2, width: 11, height: 3.2 },   // KEY_ESC
+  { label: 'Tab',  primary: 0x09, left: 45.2, top: 59.2, width: 11, height: 3.2 }, // KEY_TAB
   { label: 'Caps', primary: 0, modifier: 'caps',
-                               left: 57.2, top: 59.2, width: 11, height: 3.2 },
-  { label: 'Del',  primary: 127, left: 69, top: 59.2, width: 11, height: 3.2 },
-  { label: '⌫',    primary: 8,   left: 81.5, top: 59.2, width: 11, height: 3.2 },
+                               left: 57.2, top: 59.2, width: 11, height: 3.2 },     // UI modifier only
+  { label: 'Del',  primary: 0xD4, left: 69, top: 59.2, width: 11, height: 3.2 },   // KEY_DEL
+  { label: '⌫',    primary: 0x08, left: 81.5, top: 59.2, width: 11, height: 3.2 }, // KEY_BACKSPACE
 
   // ── Special chars row ` ~ / ? \ | - _ = + [ { ] } ─────────────────────────
   //   7 keys spanning x ≈ 157-472 px
@@ -86,7 +86,7 @@ export const KEY_DEFS: KeyDef[] = [
   { label: 'K', primary: 107, left: 67.7, top: 78.8, width: 7.8, height: 4.8 },
   { label: 'L', primary: 108, left: 76.1, top: 78.8, width: 7.8, height: 4.8 },
   // Enter spans ASDF + ZXCV rows
-  { label: '↵', primary: 13, left: 84.9, top: 78.8, width: 7.8, height: 10 },
+  { label: '↵', primary: 0x0A, left: 84.9, top: 78.8, width: 7.8, height: 10 }, // KEY_ENTER
 
   // ── ZXCV row ───────────────────────────────────────────────────────────────
   { label: 'Z', primary: 122, left:  8, top: 84, width: 7.8, height: 4.8 },

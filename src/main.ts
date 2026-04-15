@@ -343,14 +343,29 @@ document.addEventListener('keydown', (e) => {
         key = e.key.charCodeAt(0);
     } else {
         switch (e.key) {
-            case 'Enter':     key = 13;  break;
-            case 'Backspace': key = 8;   break;
-            case 'Escape':    key = 27;  break;
-            case 'ArrowUp':   key = 128; break;
-            case 'ArrowDown': key = 129; break;
-            case 'ArrowLeft': key = 130; break;
-            case 'ArrowRight':key = 131; break;
-            case 'Tab':       key = 9;   break;
+            case 'Enter':     key = 0x0A; break;  // KEY_ENTER
+            case 'Backspace': key = 0x08; break;  // KEY_BACKSPACE
+            case 'Escape':    key = 0xB1; break;  // KEY_ESC
+            case 'ArrowUp':   key = 0xB5; break;  // KEY_UP
+            case 'ArrowDown': key = 0xB6; break;  // KEY_DOWN
+            case 'ArrowLeft': key = 0xB4; break;  // KEY_LEFT
+            case 'ArrowRight':key = 0xB7; break;  // KEY_RIGHT
+            case 'Tab':       key = 0x09; break;  // KEY_TAB
+            case 'Delete':    key = 0xD4; break;  // KEY_DEL
+            case 'F1':        key = 0x81; break;
+            case 'F2':        key = 0x82; break;
+            case 'F3':        key = 0x83; break;
+            case 'F4':        key = 0x84; break;
+            case 'F5':        key = 0x85; break;
+            case 'F6':        key = 0x86; break;
+            case 'F7':        key = 0x87; break;
+            case 'F8':        key = 0x88; break;
+            case 'F9':        key = 0x89; break;
+            case 'F10':       key = 0x90; break;
+            case 'Home':      key = 0xD2; break;  // KEY_HOME
+            case 'Insert':    key = 0xD1; break;  // KEY_INSERT
+            case 'PageUp':    key = 0xD6; break;  // KEY_PAGE_UP
+            case 'PageDown':  key = 0xD7; break;  // KEY_PAGE_DOWN
         }
     }
     if (key) brambleModule._picocalc_web_set_key(key);
